@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font-inter);
+}
+
+.ant-form-item-explain-error {
+  margin: 4px 0 !important; /* or any value */
+  transition: all 0.3s ease-in-out;
+}
+
+@layer {
+  .sidebar-menu-item {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #414651;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s;
+  }
+
+  .ant-menu-item-selected .sidebar-menu-item,
+  .ant-menu-item-active .sidebar-menu-item {
+    color: #fff !important;
+  }
+
+  .ant-menu-submenu-selected .sidebar-menu-item {
+    color: #edbd1e !important;
+  }
+
+  /* Normal holat (expanded) */
+  .ant-layout-sider:not(.ant-layout-sider-collapsed)
+    .ant-menu-submenu-title:has(.sidebar-menu-item),
+  .ant-layout-sider:not(.ant-layout-sider-collapsed)
+    .ant-menu-item:has(.sidebar-menu-item) {
+    padding-left: 12px !important;
+  }
+
+  .ant-layout-sider:not(.ant-layout-sider-collapsed) .ant-menu-item-only-child {
+    padding-left: 24px !important;
+  }
+
+  /* Collapsed holat */
+  .ant-layout-sider-collapsed .ant-menu-submenu-title:has(.sidebar-menu-item),
+  .ant-layout-sider-collapsed .ant-menu-item:has(.sidebar-menu-item),
+  .ant-layout-sider-collapsed .ant-menu-item-only-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px !important;
+  }
+
+  .input-shadow {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .table-title {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #717680;
+  }
+}
+/* css faylda yoki tailwind orqali */
+/* src/pages/CheckService.module.css */
+.checkServiceTable .ant-table-cell {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.checkServiceTable .ant-table-pagination {
+  margin: 0 !important;
+  padding: 0 16px 0 16px !important;
+}
+
+/* style.css yoki global.scss faylingizga qo‘shing */
+.completed-table .ant-table-cell {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+.ant-table-tbody > tr > td {
+  color: #535862 !important;
+}
+.icon-check path {
+  stroke: #717680;
+  transition: stroke 0.2s;
+}
+
+.icon-check:hover path,
+.icon-check:active path {
+  stroke: #edbd1e; /* hover va active rang */
+}
