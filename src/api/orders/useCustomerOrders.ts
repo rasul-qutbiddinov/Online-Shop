@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "@/api/axios"; // default export bo‘lgani uchun {} ishlatmaymiz
+import api from "@/api/axios"; // axios instance (default export)
 
 export interface OrderItem {
   id: number;
@@ -26,18 +26,20 @@ export interface OrdersResponse {
   data: Order[];
 }
 
-export const useCustomerOrders = (email: string) => {
+export const useCustomerOrders = (email?: string) => {
   return useQuery<OrdersResponse>({
-    queryKey: ["customerOrders", email],
+    queryKey: ["customerOrders", email], // ✅ har bir user uchun alohida cache
     queryFn: async () => {
-      const res = await api.get<OrdersResponse>(
-        `/orders/customer/${encodeURIComponent(email)}`,
+      const { data } = await api.get<OrdersResponse>(
+        `/orders/customer/${encodeURIComponent(email!)}`,
         {
           headers: { "Accept-Language": "uz" },
         },
       );
-      return res.data;
+      return data;
     },
-    enabled: !!email, // email bo‘lsa query ishlaydi
+    enabled: Boolean(email), // ✅ email bo‘lsa query ishlaydi
+    staleTime: 1000 * 60 * 2, // 2 daqiqa cache valid
+    gcTime: 1000 * 60 * 10, // 10 daqiqadan keyin garbage collect
   });
 };
