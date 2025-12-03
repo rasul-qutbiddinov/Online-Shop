@@ -20,12 +20,11 @@ import { useTranslations } from "@/hooks/useTranslations";
 
 function ManageProducts() {
   const t = useTranslations().manageProducts;
-  const [page, setPage] = useState(1); // UI uchun 1-based
-  const pageSize = 5;
+  const [page, setPage] = useState(1);
+  const pageSize = 8;
 
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-  // API dan mahsulotlarni olish (search va category filter bilan)
  const { data, isLoading, isFetching } = useGetProducts({
    page: page - 1,
    size: pageSize,
